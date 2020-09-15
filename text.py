@@ -1,8 +1,9 @@
 from unicodedata import normalize
 
-def formatText(tweet){
+def formatText(tweet):
     text = normalize('NFKD', tweet.text).encode('ASCII', 'ignore').decode('ASCII')
+    text = text.replace('@', '')
     text = text.lower()
-    text = text.replace('google pesquisar' '')
+    if 'http' in text:
+        text = text[:text.find('http')]
     return text
-}
