@@ -29,7 +29,9 @@ while True:
             content = content.replace('google pesquisar', '')
             if 'rt' not in content:
                 print(tweet.text)
-                screenshot.get(content)
+                link = text.getLink(content)
+                print(link)
+                screenshot.get(link)
                 twitter.reply(content, tweet.id)
             else:
                 print('rt nao conta')
