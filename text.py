@@ -7,3 +7,10 @@ def formatText(tweet):
     if 'http' in text:
         text = text[:text.find('http')]
     return text
+
+def getLink(search):
+    search = search.replace(' ', '+')
+
+    url = 'https://www.google.com/search?&q='+ search+ '&ie=UTF-8&oe=UTF-8'
+
+    return url
