@@ -8,7 +8,7 @@ for tweet in tweets:
         if 'google pesquisar' in content:
             content = content.replace('google pesquisar', '')
             if 'rt' not in content:
-                print(content)
+                print(tweet.text)
                 link = text.getLink(content)
                 print(link)
                 screenshot.get(link)
@@ -28,7 +28,7 @@ while True:
         if 'google pesquisar' in content:
             content = content.replace('google pesquisar', '')
             if 'rt' not in content:
-                print(content)
+                print(tweet.text)
                 screenshot.get(content)
                 twitter.reply(content, tweet.id)
             else:

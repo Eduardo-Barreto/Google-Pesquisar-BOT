@@ -6,7 +6,7 @@ cloudconvert.configure(api_key = authkeys.convert, sandbox = False)
 def get(url):
     job = cloudconvert.Job.create(payload={
         "tasks": {
-            "task-1": {
+            "print": {
                 "operation": "capture-website",
                 "url": url,
                 "output_format": "png",
@@ -20,7 +20,7 @@ def get(url):
             "export-it": {
                 "operation": "export/url",
                 "input": [
-                    "task-1"
+                    "print"
                 ],
                 "inline": True,
                 "archive_multiple_files": False

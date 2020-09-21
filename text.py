@@ -6,6 +6,8 @@ def formatText(tweet):
     text = text.lower()
     if 'http' in text:
         text = text[:text.find('http')]
+    if '/n' in text:
+        text = text[:text.find('/n')]
     return text
 
 def getLink(search):
