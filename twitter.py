@@ -13,5 +13,5 @@ def getFirstTweets():
 def getTweets(last_id):
     return twiiter.search(q='Google Pesquisar', result_type='recent', since_id=last_id)
 
-def reply(content, tweetId):
-    twiiter.update_with_media(status=content, filename='screenshot.png', in_reply_to_status_id=tweetId, auto_populate_reply_metadata=True)
+def reply(content, tweetId, url):
+    twiiter.update_with_media(status=content+'\nsua pesquisa: '+url, filename='screenshot.png', in_reply_to_status_id=tweetId, auto_populate_reply_metadata=True)

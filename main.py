@@ -12,7 +12,7 @@ for tweet in tweets:
                 link = text.getLink(content)
                 print(link)
                 screenshot.get(link)
-                twitter.reply(content, tweet.id)
+                twitter.reply(content, tweet.id, link)
             else:
                 print('rt nao conta')
         else:
@@ -32,7 +32,7 @@ while True:
                 link = text.getLink(content)
                 print(link)
                 screenshot.get(link)
-                twitter.reply(content, tweet.id)
+                twitter.reply(content, tweet.id, link)
             else:
                 print('rt nao conta')
         else:
