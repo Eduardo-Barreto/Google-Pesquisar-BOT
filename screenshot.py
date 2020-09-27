@@ -1,38 +1,17 @@
-import cloudconvert
-import authkeys
+import imgkit
 
-cloudconvert.configure(api_key = authkeys.convert, sandbox = False)
 
 def get(url):
-    job = cloudconvert.Job.create(payload={
-        "tasks": {
-            "print": {
-                "operation": "capture-website",
-                "url": url,
-                "output_format": "png",
-                "engine": "chrome",
-                "screen_width": 1440,
-                "fit": "max",
-                "wait_until": "load",
-                "wait_time": 0,
-                "filename": "screenshot.png"
-            },
-            "export-it": {
-                "operation": "export/url",
-                "input": [
-                    "print"
-                ],
-                "inline": True,
-                "archive_multiple_files": False
-            }
-        }
-    })
+    config = imgkit.config(wkhtmltoimage='C:/Program Files/wkhtmltopdf/bin/wkhtmltoimage.exe')
 
-    job = cloudconvert.Job.wait(id=job['id'])
+    options = {
+    'format': 'jpg',
+    'crop-h': '1230',
+    'crop-w': '1440',
+    'crop-x': '0',
+    'crop-y': '0',
+    'encoding': "UTF-8",
+    'quiet': '',
+}
 
-    for task in job["tasks"]:
-        if task.get("name") == "export-it" and task.get("status") == "finished":
-            export_task = task
-
-    file = export_task.get("result").get("files")[0]
-    cloudconvert.download(filename=file['filename'], url=file['url'])
+    imgkit.from_url(url, 'screenshot.jpg', config=config, options=options)

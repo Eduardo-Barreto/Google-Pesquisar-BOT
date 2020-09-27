@@ -20,5 +20,3 @@ def getLink(search):
     url = xorx.tinyurl.short(url)
 
     return url
-
-
