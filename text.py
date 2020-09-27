@@ -9,6 +9,11 @@ def formatText(tweet):
         text = text[:text.find('http')]
     text = text.replace('\n', '')
 
+    mentions = tweet.entities.get('user_mentions')
+    if mentions != []:
+        for user in mentions:
+            text = text.replace(user.get('screen_name'), '')
+
     return text
 
 def getLink(search):

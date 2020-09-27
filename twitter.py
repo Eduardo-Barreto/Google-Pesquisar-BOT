@@ -4,11 +4,11 @@ import authkeys
 auth = tweepy.OAuthHandler(authkeys.key1, authkeys.key2)
 auth.set_access_token(authkeys.key3, authkeys.key4)
 
-twiiter = tweepy.API(auth)
+twiiter = tweepy.API(auth, wait_on_rate_limit=True)
 
 
 def getFirstTweets():
-    return twiiter.search(q='Google Pesquisar', result_type='recent')
+    return twiiter.search(q='Google Pesquisar', result_type='recent', count=1)
 
 def getTweets(last_id):
     return twiiter.search(q='Google Pesquisar', result_type='recent', since_id=last_id)
