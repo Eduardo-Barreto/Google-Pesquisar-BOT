@@ -9,17 +9,18 @@ for tweet in tweets:
         if 'google pesquisar' in content:
             content = content.replace('google pesquisar', '')
             if 'rt' not in content:
-                print(content)
-                link = text.getLink(content)
-                print(link)
-                screenshot.get(link)
-                twitter.reply(content, tweet.id, link)
-                last_id = tweet.id
+                if content != '':
+                    print(content)
+                    link = text.getLink(content)
+                    print(link)
+                    screenshot.get(link)
+                    twitter.reply(content, tweet.id, link)
             else:
                 print('rt nao conta')
         else:
             pass
-        print('-'*50)
+        print('-'*100)
+        last_id = tweet.id
 
 while True:
     tweets = twitter.getTweets(last_id)
@@ -29,15 +30,15 @@ while True:
         if 'google pesquisar' in content:
             content = content.replace('google pesquisar', '')
             if 'rt' not in content:
-                if content != '':
+                if content != '' and content != ' ':
                     print(content)
                     link = text.getLink(content)
                     print(link)
                     screenshot.get(link)
                     twitter.reply(content, tweet.id, link)
-                    last_id = tweet.id
             else:
                 print('rt nao conta')
         else:
             pass
-        print('-'*50)
+        print('-'*100)
+    last_id = tweet.id

@@ -12,7 +12,7 @@ def formatText(tweet):
     mentions = tweet.entities.get('user_mentions')
     if mentions != []:
         for user in mentions:
-            text = text.replace(user.get('screen_name'), '')
+            text = text.replace(user.get('screen_name').lower(), '')
 
     return text
 
@@ -21,7 +21,7 @@ def getLink(search):
 
     url = 'https://www.google.com/search?&q='+ search+ '&ie=UTF-8&oe=UTF-8'
     
-    xorx = pyshorteners.Shortener()
-    url = xorx.tinyurl.short(url)
+    shorted = pyshorteners.Shortener()
+    url = shorted.tinyurl.short(url)
 
     return url
