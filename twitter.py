@@ -8,10 +8,11 @@ auth.set_access_token(authkeys.key3, authkeys.key4)
 twiiter = tweepy.API(auth, wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
 
 
-def getFirstTweets():
-    return tweepy.Cursor(twiiter.search, 'Google Pesquisar').items(1)
+def getFirstTweet():
+    agora = datetime.now().strftime('%Y-%m-%d')
+    return tweepy.Cursor(twiiter.search, 'Google Pesquisar', since=agora).items(1)
 
-def getTweets(last_id):
+def getTweets():
     agora = datetime.now().strftime('%Y-%m-%d')
     return tweepy.Cursor(twiiter.search, 'Google Pesquisar', since=agora).items(30)
 
