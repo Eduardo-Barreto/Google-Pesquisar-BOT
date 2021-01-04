@@ -1,8 +1,16 @@
 import imgkit
+import os
 
 
 def get(url):
-    config = imgkit.config(wkhtmltoimage='C:/Program Files/wkhtmltopdf/bin/wkhtmltoimage.exe')
+    if os.name == 'nt':
+        config = imgkit.config(
+            wkhtmltoimage='C:/Program Files/wkhtmltopdf/bin/wkhtmltoimage.exe'
+        )
+    else:
+        config = imgkit.config(
+            wkhtmltoimage='/usr/bin/wkhtmltoimage'
+        )
 
     options = {
         'format': 'jpg',
