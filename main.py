@@ -1,10 +1,15 @@
+import os
+from time import sleep
+
 import twitter
 import text
 import screenshot
-from time import sleep
+
+os.system('cls' if os.name == 'nt' else 'clear')
 
 tweets = twitter.getFirstTweet()
 for tweet in tweets:
+    if twitter.nao_foi(tweet.id):
         content = text.formatText(tweet)
         if 'google pesquisar' in content:
             content = content.replace('google pesquisar', '')
@@ -17,19 +22,19 @@ for tweet in tweets:
                     twitter.reply(content, tweet.id, link)
             else:
                 print('rt nao conta')
-        else:
-            pass
-        print('-'*100)
+
+        print('-'*10)
         last_id = tweet.id
+        last_tweets = open('./last_tweets.txt', 'a')
+        last_tweets.write('\n' + str(tweet.id))
+        last_tweets.close()
 
 while True:
 
-    tweets = twitter.getTweets()
+    tweets = twitter.getTweets(last_id)
 
     for tweet in tweets:
-        read_last_tweets = open('./last_tweets.txt', 'r')
-        last_tweets = open('./last_tweets.txt', 'a')
-        if str(tweet.id) not in read_last_tweets:
+        if twitter.nao_foi(tweet.id):
             content = text.formatText(tweet)
             if 'google pesquisar' in content:
                 content = content.replace('google pesquisar', '')
@@ -39,12 +44,12 @@ while True:
                         link = text.getLink(content)
                         print(link)
                         screenshot.get(link)
-                        twitter.reply(content, tweet.id, link)
+                        twitter.reply(tweet.id, content, link)
                 else:
                     print('rt nao conta')
-            else:
-                pass
-            print('-'*100)
+
+            print('-'*10)
+            last_id = tweet.id
+            last_tweets = open('./last_tweets.txt', 'a')
             last_tweets.write('\n' + str(tweet.id))
-            read_last_tweets.close()
             last_tweets.close()

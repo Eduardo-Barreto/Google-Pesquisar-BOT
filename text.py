@@ -20,7 +20,7 @@ def getLink(search):
     search = search.replace(' ', '+')
 
     url = 'https://www.google.com/search?&q='+ search+ '&ie=UTF-8&oe=UTF-8'
-    
+
     shorted = pyshorteners.Shortener()
     url = shorted.tinyurl.short(url)
 

@@ -10,16 +10,28 @@ twiiter = tweepy.API(auth, wait_on_rate_limit=True, wait_on_rate_limit_notify=Tr
 
 def getFirstTweet():
     agora = datetime.now().strftime('%Y-%m-%d')
-    return tweepy.Cursor(twiiter.search, 'Google Pesquisar', since=agora).items(1)
+    return tweepy.Cursor(twiiter.search, q='google pesquisar', since=agora).items(1)
 
-def getTweets():
-    agora = datetime.now().strftime('%Y-%m-%d')
-    return tweepy.Cursor(twiiter.search, 'Google Pesquisar', since=agora).items(30)
 
-def reply(content, tweetId, url):
+def getTweets(last_id):
+    return tweepy.Cursor(twiiter.search, q='google pesquisar', since_id=last_id).items(30)
+
+
+def reply(tweet_id, content, url):
     twiiter.update_with_media(
-        status=content+'\n\nsua pesquisa: '+url, 
-        filename='screenshot.jpg', 
-        in_reply_to_status_id=tweetId, 
+        status=content+'\n\nsua pesquisa: '+url,
+        filename='screenshot.jpg',
+        in_reply_to_status_id=tweet_id,
         auto_populate_reply_metadata=True
     )
+
+def nao_foi(tweet_id):
+    read_last_tweets = open('./last_tweets.txt', 'r')
+
+    for linha in read_last_tweets:
+        if str(tweet_id) in linha:
+            read_last_tweets.close()
+            return False
+
+    read_last_tweets.close()
+    return True
