@@ -14,7 +14,7 @@ def getFirstTweet():
 
 
 def getTweets(last_id):
-    return tweepy.Cursor(twiiter.search, q='google pesquisar', since_id=last_id).items(30)
+    return tweepy.Cursor(twiiter.search, q='google pesquisar', since_id=last_id).items(15)
 
 
 def reply(tweet_id, content, url):

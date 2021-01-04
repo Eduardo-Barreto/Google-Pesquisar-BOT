@@ -5,7 +5,13 @@ import twitter
 import text
 import screenshot
 
-os.system('cls' if os.name == 'nt' else 'clear')
+def clear():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+clear()
+print('pai ta on')
+
+last_id = ''
 
 tweets = twitter.getFirstTweet()
 for tweet in tweets:
@@ -19,18 +25,17 @@ for tweet in tweets:
                     link = text.getLink(content)
                     print(link)
                     screenshot.get(link)
-                    twitter.reply(content, tweet.id, link)
-            else:
-                print('rt nao conta')
+                    twitter.reply(tweet.id, content, link)
 
-        print('-'*10)
         last_id = tweet.id
         last_tweets = open('./last_tweets.txt', 'a')
         last_tweets.write('\n' + str(tweet.id))
         last_tweets.close()
 
 while True:
-
+    sleep(5)
+    clear()
+    print('mais uma leva de tweets')
     tweets = twitter.getTweets(last_id)
 
     for tweet in tweets:
@@ -40,16 +45,14 @@ while True:
                 content = content.replace('google pesquisar', '')
                 if 'rt' not in content:
                     if content != '' and content != ' ':
+                        print()
                         print(content)
                         link = text.getLink(content)
                         print(link)
                         screenshot.get(link)
                         twitter.reply(tweet.id, content, link)
-                else:
-                    print('rt nao conta')
+                        last_tweets = open('./last_tweets.txt', 'a')
+                        last_tweets.write('\n' + str(tweet.id))
+                        last_tweets.close()
 
-            print('-'*10)
-            last_id = tweet.id
-            last_tweets = open('./last_tweets.txt', 'a')
-            last_tweets.write('\n' + str(tweet.id))
-            last_tweets.close()
+        last_id = tweet.id
