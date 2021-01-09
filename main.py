@@ -36,7 +36,7 @@ for tweet in tweets:
             last_tweets.close()
 
 while True:
-    sleep(3)
+    sleep(5)
     clear()
     print('mais uma leva de tweets')
     try:
