@@ -59,7 +59,9 @@ while True:
                                 last_tweets = open('./last_tweets.txt', 'a')
                                 last_tweets.write('\n' + str(tweet.id))
                                 last_tweets.close()
+                                print('\nrespondido com sucesso\n')
 
             last_id = tweet.id
     except:
         clear()
+        print('algo deu errado\n')
