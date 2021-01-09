@@ -6,7 +6,17 @@ def formatText(tweet):
     text = text.replace('@', '')
     text = text.replace('&gt;', '>')
     text = text.replace('&lt;', '<')
+    text = text.strip()
+    text = text.strip('*')
+    text = text.strip(',')
+    text = text.strip('?')
+    text = text.strip('.')
+    text = text.strip(':')
+    text = text.strip('~')
+    text = text.strip('-')
+    text = text.strip()
     text = text.lower()
+
     if 'http' in text:
         text = text[:text.find('http')]
     text = text.replace('\n', '')
