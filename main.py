@@ -36,7 +36,7 @@ for tweet in tweets:
             last_tweets.close()
 
 while True:
-    sleep(5)
+    sleep(3)
     clear()
     print('mais uma leva de tweets')
     try:
@@ -48,8 +48,6 @@ while True:
                     content = text.formatText(tweet)
                     if 'google pesquisar' in content:
                         content = content.replace('google pesquisar', '')
-                        content = content.strip()
-                        content = content.strip('*')
                         if 'rt' not in content:
                             if len(content) > 1:
                                 print()
