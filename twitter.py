@@ -19,7 +19,7 @@ def getTweets(last_id):
 
 def reply(tweet_id, content, url):
     twiiter.update_with_media(
-        status=content+'\n\nsua pesquisa: '+url,
+        status=content+'\n\nlink para a sua pesquisa: '+url,
         filename='screenshot.jpg',
         in_reply_to_status_id=tweet_id,
         auto_populate_reply_metadata=True
