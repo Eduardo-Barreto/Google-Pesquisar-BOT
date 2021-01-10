@@ -29,6 +29,7 @@ def formatText(tweet):
         for user in mentions:
             text = text.replace(user.get('screen_name').lower(), '')
 
+    text = text.strip()
     return text
 
 def getLink(search):
