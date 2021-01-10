@@ -3,26 +3,22 @@ import pyshorteners
 
 def formatText(tweet):
     text = normalize('NFKD', tweet.text).encode('ASCII', 'ignore').decode('ASCII')
+    text = text.lower()
     text = text.replace('google pesquisar', '')
     text = text.replace('@', '')
     text = text.replace('&gt;', '>')
     text = text.replace('&lt;', '<')
+
     text = text.strip()
-    text = text.strip('*')
+    text = text.replace('*', '')
+    text = text.replace('"', '')
+    text = text.replace(',', '')
+    text = text.replace('?', '')
+    text = text.replace('.', '')
+    text = text.replace(':', '')
+    text = text.replace('~', '')
+    text = text.replace('-', '')
     text = text.strip()
-    text = text.strip(',')
-    text = text.strip()
-    text = text.strip('?')
-    text = text.strip()
-    text = text.strip('.')
-    text = text.strip()
-    text = text.strip(':')
-    text = text.strip()
-    text = text.strip('~')
-    text = text.strip()
-    text = text.strip('-')
-    text = text.strip()
-    text = text.lower()
 
     if 'http' in text:
         text = text[:text.find('http')]
