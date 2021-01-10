@@ -20,8 +20,6 @@ for tweet in tweets:
             content = text.formatText(tweet)
             if 'google pesquisar' in content:
                 content = content.replace('google pesquisar', '')
-                content = content.strip()
-                content = content.strip('*')
                 if 'rt' not in content:
                     if len(content) > 1:
                         print(content)
@@ -45,8 +43,9 @@ while True:
         for tweet in tweets:
             if tweet.author.screen_name != 'seu_google':
                 if twitter.nao_foi(tweet.id):
+                    content = text.formatText(tweet)
                     if 'google pesquisar' in content:
-                        content = text.formatText(tweet)
+                        content = content.replace('google pesquisar', '')
                         if 'rt' not in content:
                             if len(content) > 1:
                                 print()
