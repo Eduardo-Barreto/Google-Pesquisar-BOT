@@ -17,6 +17,8 @@ def formatText(tweet):
     text = text.replace(':', '')
     text = text.replace('~', '')
     text = text.replace('-', '')
+    text = text.replace('>', '')
+    text = text.replace('<', '')
     text = text.strip()
 
     if 'http' in text:
