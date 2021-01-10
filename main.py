@@ -45,7 +45,6 @@ while True:
         for tweet in tweets:
             if tweet.author.screen_name != 'seu_google':
                 if twitter.nao_foi(tweet.id):
-                    content = tweet.text
                     if 'google pesquisar' in content:
                         content = text.formatText(tweet)
                         if 'rt' not in content:
