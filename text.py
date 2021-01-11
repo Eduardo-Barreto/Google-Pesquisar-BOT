@@ -12,6 +12,21 @@ def formatText(tweet):
 
     text = text.strip()
 
+    if 'http' in text:
+        text = text[:text.find('http')]
+    text = text.replace('\n', '')
+
+    mentions = tweet.entities.get('user_mentions')
+    if mentions != []:
+        for user in mentions:
+            text = text.replace(user.get('screen_name').lower(), '')
+
+    text = text.strip()
+
+    return text
+
+
+def replaces(text):
     to_replace = [
         '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '+',
         '=', '"', ',', '?', '.', ':', '~', '>', '<', '{', '}', ';',
@@ -23,16 +38,6 @@ def formatText(tweet):
 
     text = text.strip()
 
-    if 'http' in text:
-        text = text[:text.find('http')]
-    text = text.replace('\n', '')
-
-    mentions = tweet.entities.get('user_mentions')
-    if mentions != []:
-        for user in mentions:
-            text = text.replace(user.get('screen_name').lower(), '')
-
-    text = text.strip()
     return text
 
 

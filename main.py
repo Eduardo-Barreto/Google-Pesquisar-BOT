@@ -21,11 +21,9 @@ for tweet in tweets:
         if twitter.nao_foi(tweet.id):
             content = tweet.text
             if 'google pesquisar' in content:
+                content = text.formatText(tweet)
                 if ('rt' not in content) and ('!q' not in content):
-                    content = text.formatText(tweet)
-                    content = content.replace(' google pesquisar ', '')
-                    content = content.replace(' google pesquisar', '')
-                    content = content.replace('google pesquisar', '')
+                    content = text.replaces(content)
                     if len(content) > 1:
                         print(content)
                         link = text.getLink(content)
@@ -57,13 +55,9 @@ while True:
             if twitter.nao_foi(tweet.id):
                 content = tweet.text
                 if 'google pesquisar' in content:
-                    content = content.replace('google pesquisar', '')
+                    content = text.formatText(tweet)
                     if ('rt' not in content) and ('!q' not in content):
-                        content = text.formatText(tweet)
-                        content = content.replace(' google pesquisar ', '')
-                        content = content.replace('google pesquisar ', '')
-                        content = content.replace(' google pesquisar', '')
-                        content = content.replace('google pesquisar', '')
+                        content = text.replaces(content)
                         if len(content) > 1:
                             print()
                             print(content)
