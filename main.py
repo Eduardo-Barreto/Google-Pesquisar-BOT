@@ -31,12 +31,28 @@ for tweet in tweets:
                         screenshot.get(link)
                         try:
                             twitter.reply(tweet.id, content, link)
+                            print('\nrespondido com sucesso\n')
                         except:
+                            print('\nprincipal suspensa')
                             try:
-                                twitter.reserva_reply(tweet.id, content, link)
+                                twitter.reserva_reply(
+                                    tweet.id,
+                                    content,
+                                    link
+                                )
+                                print('respondido na reserva\n')
                             except:
-                                clear()
-                                print('outro ban')
+                                print('reserva suspensa')
+                                try:
+                                    twitter.reserva2_reply(
+                                        tweet.id,
+                                        content,
+                                        link
+                                    )
+                                    print('\nrespondido na reserva da reserva\n')
+                                except:
+                                    clear()
+                                    print('eu nao aguento mais ser suspenso')
 
             last_id = tweet.id
             last_tweets = open('./last_tweets.txt', 'a')
@@ -76,8 +92,18 @@ while True:
                                     )
                                     print('\nrespondido na reserva\n')
                                 except:
-                                    clear()
-                                    print('outro ban')
+                                    try:
+                                        twitter.reserva2_reply(
+                                            tweet.id,
+                                            content,
+                                            link
+                                        )
+                                        print('\nrespondido na reserva da reserva\n')
+                                    except:
+                                        clear()
+                                        print(
+                                            'eu nao aguento mais ser suspenso'
+                                        )
 
                             last_tweets = open('./last_tweets.txt', 'a')
                             last_tweets.write('\n' + str(tweet.id))
