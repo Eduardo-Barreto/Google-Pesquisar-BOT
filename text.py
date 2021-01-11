@@ -15,7 +15,7 @@ def formatText(tweet):
     to_replace = [
         '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '+',
         '=', '"', ',', '?', '.', ':', '~', '>', '<', '{', '}', ';',
-        'botpesquisar', 'seugoogle'
+        'botpesquisar ', 'seugoogle ', 'botpesquisar', 'seugoogle'
     ]
 
     for item in to_replace:
