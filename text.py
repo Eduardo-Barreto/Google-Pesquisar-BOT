@@ -9,6 +9,7 @@ def formatText(tweet):
     text = text.decode('ASCII')
     text = text.lower()
     text = unescape(text)
+    text = text.lower()
 
     text = text.strip()
 
@@ -30,6 +31,7 @@ def replaces(text):
     to_replace = [
         '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '+',
         '=', '"', ',', '?', '.', ':', '~', '>', '<', '{', '}', ';',
+        ' google pesquisar ', ' google pesquisar', 'google pesquisar ',
         'botpesquisar ', 'seugoogle ', 'botpesquisar', 'seugoogle'
     ]
 
