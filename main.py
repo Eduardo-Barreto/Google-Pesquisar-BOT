@@ -64,9 +64,6 @@ while True:
                             screenshot.get(link)
                             try:
                                 twitter.reply(tweet.id, content, link)
-                                last_tweets = open('./last_tweets.txt', 'a')
-                                last_tweets.write('\n' + str(tweet.id))
-                                last_tweets.close()
                                 print('\nrespondido com sucesso\n')
                             except:
                                 try:
@@ -75,15 +72,13 @@ while True:
                                         content,
                                         link
                                     )
-                                    last_tweets = open(
-                                        './last_tweets.txt',
-                                        'a'
-                                    )
-                                    last_tweets.write('\n' + str(tweet.id))
-                                    last_tweets.close()
                                     print('\nrespondido na reserva\n')
                                 except:
                                     clear()
                                     print('outro ban')
+
+                            last_tweets = open('./last_tweets.txt', 'a')
+                            last_tweets.write('\n' + str(tweet.id))
+                            last_tweets.close()
 
         last_id = tweet.id
