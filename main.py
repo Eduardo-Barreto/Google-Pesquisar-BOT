@@ -5,8 +5,10 @@ import twitter
 import text
 import screenshot
 
+
 def clear():
     os.system('cls' if os.name == 'nt' else 'clear')
+
 
 clear()
 print('pai ta on')
@@ -20,13 +22,20 @@ for tweet in tweets:
             content = text.formatText(tweet)
             if 'google pesquisar' in content:
                 content = content.replace('google pesquisar', '')
-                if 'rt' not in content:
+                if ('rt' not in content) and ('!q' not in content):
                     if len(content) > 1:
                         print(content)
                         link = text.getLink(content)
                         print(link)
                         screenshot.get(link)
-                        twitter.reply(tweet.id, content, link)
+                        try:
+                            twitter.reply(tweet.id, content, link)
+                        except:
+                            try:
+                                twitter.reserva_reply(tweet.id, content, link)
+                            except:
+                                clear()
+                                print('outro ban')
 
             last_id = tweet.id
             last_tweets = open('./last_tweets.txt', 'a')
@@ -61,8 +70,15 @@ while True:
                                 print('\nrespondido com sucesso\n')
                             except:
                                 try:
-                                    twitter.reserva_reply(tweet.id, content, link)
-                                    last_tweets = open('./last_tweets.txt', 'a')
+                                    twitter.reserva_reply(
+                                        tweet.id,
+                                        content,
+                                        link
+                                    )
+                                    last_tweets = open(
+                                        './last_tweets.txt',
+                                        'a'
+                                    )
                                     last_tweets.write('\n' + str(tweet.id))
                                     last_tweets.close()
                                     print('\nrespondido na reserva\n')
@@ -71,4 +87,3 @@ while True:
                                     print('outro ban')
 
         last_id = tweet.id
-
