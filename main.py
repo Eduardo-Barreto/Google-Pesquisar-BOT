@@ -15,6 +15,7 @@ print('pai ta on')
 
 last_id = ''
 
+sleep(5)
 tweets = twitter.getFirstTweet()
 for tweet in tweets:
     if tweet.author.screen_name != 'seu_google':
@@ -60,7 +61,7 @@ for tweet in tweets:
             last_tweets.close()
 
 while True:
-    sleep(5)
+    sleep(7)
     clear()
     print('mais uma leva de tweets')
 
@@ -84,6 +85,7 @@ while True:
                                 twitter.reply(tweet.id, content, link)
                                 print('\nrespondido com sucesso\n')
                             except:
+                                print('\nprincipal suspensa')
                                 try:
                                     twitter.reserva_reply(
                                         tweet.id,
@@ -92,6 +94,7 @@ while True:
                                     )
                                     print('\nrespondido na reserva\n')
                                 except:
+                                    print('\nprincipal suspensa')
                                     try:
                                         twitter.reserva2_reply(
                                             tweet.id,
