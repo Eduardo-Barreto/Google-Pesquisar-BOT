@@ -20,9 +20,8 @@ tweets = twitter.getFirstTweet()
 for tweet in tweets:
     if tweet.author.screen_name != 'seu_google':
         if twitter.nao_foi(tweet.id):
-            content = tweet.text
+            content = text.formatText(tweet)
             if 'google pesquisar' in content:
-                content = text.formatText(tweet)
                 if ('rt' not in content) and ('!q' not in content):
                     content = text.replaces(content)
                     if len(content) > 1:
@@ -55,10 +54,10 @@ for tweet in tweets:
                                     clear()
                                     print('eu nao aguento mais ser suspenso')
 
-            last_id = tweet.id
-            last_tweets = open('./last_tweets.txt', 'a')
-            last_tweets.write('\n' + str(tweet.id))
-            last_tweets.close()
+                        last_id = tweet.id
+                        last_tweets = open('./last_tweets.txt', 'a')
+                        last_tweets.write('\n' + str(tweet.id))
+                        last_tweets.close()
 
 while True:
     sleep(7)
@@ -70,9 +69,8 @@ while True:
     for tweet in tweets:
         if tweet.author.screen_name != 'seu_google':
             if twitter.nao_foi(tweet.id):
-                content = tweet.text
+                content = text.formatText(tweet)
                 if 'google pesquisar' in content:
-                    content = text.formatText(tweet)
                     if ('rt' not in content) and ('!q' not in content):
                         content = text.replaces(content)
                         if len(content) > 1:

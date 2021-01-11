@@ -15,7 +15,8 @@ def formatText(tweet):
 
     if 'http' in text:
         text = text[:text.find('http')]
-    text = text.replace('\n', '')
+
+    text = text.replace('\n', ' ')
 
     mentions = tweet.entities.get('user_mentions')
     if mentions != []:
