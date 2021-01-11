@@ -6,6 +6,9 @@ import text
 import screenshot
 
 
+contas = ['seu_google', 'bot_pesquisar', 'GoogleReserva']
+
+
 def clear():
     os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -18,7 +21,7 @@ last_id = ''
 sleep(5)
 tweets = twitter.getFirstTweet()
 for tweet in tweets:
-    if tweet.author.screen_name != 'seu_google':
+    if tweet.author.screen_name not in contas:
         if twitter.nao_foi(tweet.id):
             content = text.formatText(tweet)
             if 'google pesquisar' in content:
@@ -67,7 +70,7 @@ while True:
     tweets = twitter.getTweets(last_id)
 
     for tweet in tweets:
-        if tweet.author.screen_name != 'seu_google':
+        if tweet.author.screen_name not in contas:
             if twitter.nao_foi(tweet.id):
                 content = text.formatText(tweet)
                 if 'google pesquisar' in content:
