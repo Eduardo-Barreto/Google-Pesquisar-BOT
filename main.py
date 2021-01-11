@@ -19,6 +19,7 @@ tweets = twitter.getFirstTweet()
 for tweet in tweets:
     if tweet.author.screen_name != 'seu_google':
         if twitter.nao_foi(tweet.id):
+            content = tweet.text
             if 'google pesquisar' in content:
                 if ('rt' not in content) and ('!q' not in content):
                     content = text.formatText(tweet)
@@ -54,6 +55,7 @@ while True:
     for tweet in tweets:
         if tweet.author.screen_name != 'seu_google':
             if twitter.nao_foi(tweet.id):
+                content = tweet.text
                 if 'google pesquisar' in content:
                     content = content.replace('google pesquisar', '')
                     if ('rt' not in content) and ('!q' not in content):
