@@ -32,7 +32,8 @@ def replaces(text):
         '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '+',
         '=', '"', ',', '?', '.', ':', '~', '>', '<', '{', '}', ';',
         ' google pesquisar ', ' google pesquisar', 'google pesquisar ',
-        'botpesquisar ', 'seugoogle ', 'botpesquisar', 'seugoogle'
+        'google pesquisar', 'botpesquisar ', 'seugoogle ', 'botpesquisar',
+        'seugoogle'
     ]
 
     for item in to_replace:
