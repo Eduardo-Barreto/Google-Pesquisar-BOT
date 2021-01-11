@@ -78,7 +78,15 @@ while True:
                             print(content)
                             link = text.getLink(content)
                             print(link)
-                            screenshot.get(link)
+                            try:
+                                screenshot.get(link)
+                            except:
+                                sleep(2)
+                                try:
+                                    screenshot.get(link)
+                                except:
+                                    print('erro screenshot')
+                                    pass
                             try:
                                 twitter.reply(tweet.id, content, link)
                                 print('\nrespondido com sucesso\n')
