@@ -19,12 +19,12 @@ tweets = twitter.getFirstTweet()
 for tweet in tweets:
     if tweet.author.screen_name != 'seu_google':
         if twitter.nao_foi(tweet.id):
-            content = text.formatText(tweet)
             if 'google pesquisar' in content:
-                content = content.replace(' google pesquisar ', '')
-                content = content.replace(' google pesquisar', '')
-                content = content.replace('google pesquisar', '')
                 if ('rt' not in content) and ('!q' not in content):
+                    content = text.formatText(tweet)
+                    content = content.replace(' google pesquisar ', '')
+                    content = content.replace(' google pesquisar', '')
+                    content = content.replace('google pesquisar', '')
                     if len(content) > 1:
                         print(content)
                         link = text.getLink(content)
@@ -54,10 +54,14 @@ while True:
     for tweet in tweets:
         if tweet.author.screen_name != 'seu_google':
             if twitter.nao_foi(tweet.id):
-                content = text.formatText(tweet)
                 if 'google pesquisar' in content:
                     content = content.replace('google pesquisar', '')
                     if ('rt' not in content) and ('!q' not in content):
+                        content = text.formatText(tweet)
+                        content = content.replace(' google pesquisar ', '')
+                        content = content.replace('google pesquisar ', '')
+                        content = content.replace(' google pesquisar', '')
+                        content = content.replace('google pesquisar', '')
                         if len(content) > 1:
                             print()
                             print(content)
