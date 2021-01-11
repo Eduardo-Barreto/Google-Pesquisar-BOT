@@ -100,7 +100,7 @@ while True:
                                     )
                                     print('\nrespondido na reserva\n')
                                 except:
-                                    print('\nprincipal suspensa')
+                                    print('\nreserva suspensa')
                                     try:
                                         twitter.reserva2_reply(
                                             tweet.id,
