@@ -1,5 +1,6 @@
 import os
 from time import sleep
+import tweepy
 
 import twitter
 import text
@@ -14,7 +15,7 @@ def clear():
 
 
 clear()
-print('pai ta on')
+print('Estou online')
 
 last_id = ''
 
@@ -28,42 +29,42 @@ for tweet in tweets:
                 if ('rt' not in content) and ('!q' not in content):
                     content = text.replaces(content)
                     if len(content) > 1:
+                        print()
                         print(content)
                         link = text.getLink(content)
                         print(link)
-                        try:
-                            screenshot.get(link)
-                        except:
-                            sleep(2)
-                            try:
-                                screenshot.get(link)
-                            except:
-                                print('erro screenshot')
-                                pass
+                        screenshot.get(link)
+
                         try:
                             twitter.reply(tweet.id, content, link)
-                            print('\nrespondido com sucesso\n')
-                        except:
-                            print('\nprincipal suspensa')
+                            print('\nRespondido com sucesso\n')
+
+                        except tweepy.TweepError:
+                            print('\nConta principal suspensa')
                             try:
                                 twitter.reserva_reply(
                                     tweet.id,
                                     content,
                                     link
                                 )
-                                print('respondido na reserva\n')
-                            except:
-                                print('reserva suspensa')
+                                print('\nRespondido na reserva\n')
+
+                            except tweepy.TweepError:
+                                print('\nConta reserva suspensa')
                                 try:
                                     twitter.reserva2_reply(
                                         tweet.id,
                                         content,
                                         link
                                     )
-                                    print('\nrespondido na reserva da reserva\n')
-                                except:
+                                    print('\nrespondido na' +
+                                          ' reserva da reserva\n')
+
+                                except tweepy.TweepError:
                                     clear()
-                                    print('eu nao aguento mais ser suspenso')
+                                    print(
+                                        'Todas as contas suspensas'
+                                    )
 
                         last_id = tweet.id
                         last_tweets = open('./last_tweets.txt', 'a')
@@ -73,7 +74,7 @@ for tweet in tweets:
 while True:
     sleep(7)
     clear()
-    print('mais uma leva de tweets')
+    print('Carregando tweets')
 
     tweets = twitter.getTweets(last_id)
 
@@ -89,40 +90,37 @@ while True:
                             print(content)
                             link = text.getLink(content)
                             print(link)
-                            try:
-                                screenshot.get(link)
-                            except:
-                                sleep(2)
-                                try:
-                                    screenshot.get(link)
-                                except:
-                                    print('erro screenshot')
-                                    pass
+                            screenshot.get(link)
+
                             try:
                                 twitter.reply(tweet.id, content, link)
-                                print('\nrespondido com sucesso\n')
-                            except:
-                                print('\nprincipal suspensa')
+                                print('\nRespondido com sucesso\n')
+
+                            except tweepy.TweepError:
+                                print('\nConta principal suspensa')
                                 try:
                                     twitter.reserva_reply(
                                         tweet.id,
                                         content,
                                         link
                                     )
-                                    print('\nrespondido na reserva\n')
-                                except:
-                                    print('\nreserva suspensa')
+                                    print('Respondido na reserva\n')
+
+                                except tweepy.TweepError:
+                                    print('Conta reserva suspensa')
                                     try:
                                         twitter.reserva2_reply(
                                             tweet.id,
                                             content,
                                             link
                                         )
-                                        print('\nrespondido na reserva da reserva\n')
-                                    except:
+                                        print('respondido na' +
+                                              ' reserva da reserva\n')
+
+                                    except tweepy.TweepError:
                                         clear()
                                         print(
-                                            'eu nao aguento mais ser suspenso'
+                                            'Todas as contas suspensas'
                                         )
 
                             last_tweets = open('./last_tweets.txt', 'a')

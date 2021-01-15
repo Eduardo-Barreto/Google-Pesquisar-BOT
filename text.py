@@ -1,6 +1,8 @@
 from unicodedata import normalize
 from html import unescape
 import pyshorteners
+import pyshorteners.exceptions
+from time import sleep
 
 
 def formatText(tweet):
@@ -45,11 +47,30 @@ def replaces(text):
 
 
 def getLink(search):
-    search = search.replace(' ', '+')
+    erros = (
+        pyshorteners.exceptions.BadAPIResponseException,
+        pyshorteners.exceptions.BadURLException,
+        pyshorteners.exceptions.ExpandingErrorException,
+        pyshorteners.exceptions.ShorteningErrorException
+    )
+    sucesso = False
+    while not sucesso:
+        search = search.replace(' ', '+')
 
-    url = 'https://www.google.com/search?&q=' + search + '&ie=UTF-8&oe=UTF-8'
+        url = (
+            'https://www.google.com/search?&q=' +
+            search +
+            '&ie=UTF-8&oe=UTF-8'
+        )
 
-    shorted = pyshorteners.Shortener()
-    url = shorted.tinyurl.short(url)
+        try:
+            shorted = pyshorteners.Shortener()
+            url = shorted.tinyurl.short(url)
+            sucesso = True
+
+        except erros:
+            print('Erro ao pegar link')
+            sleep(2)
+            continue
 
     return url
