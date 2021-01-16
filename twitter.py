@@ -75,18 +75,6 @@ def reply(tweet_id, content, url):
     )
 
 
-def nao_foi(tweet_id):
-    read_last_tweets = open('./last_tweets.txt', 'r')
-
-    for linha in read_last_tweets:
-        if str(tweet_id) in linha:
-            read_last_tweets.close()
-            return False
-
-    read_last_tweets.close()
-    return True
-
-
 def reserva_reply(tweet_id, content, url):
     reserva.update_with_media(
         status=content+'\n\nlink para a sua pesquisa: '+url,
@@ -103,3 +91,15 @@ def reserva2_reply(tweet_id, content, url):
         in_reply_to_status_id=tweet_id,
         auto_populate_reply_metadata=True
     )
+
+
+def nao_foi(tweet_id):
+    read_last_tweets = open('./last_tweets.txt', 'r')
+
+    for linha in read_last_tweets:
+        if str(tweet_id) in linha:
+            read_last_tweets.close()
+            return False
+
+    read_last_tweets.close()
+    return True
