@@ -59,11 +59,11 @@ def getFirstTweet():
 
 
 def getTweets(last_id):
-    return tweepy.Cursor(
+    return reversed(list(tweepy.Cursor(
         twiiter.search,
         q='google pesquisar',
         since_id=last_id
-    ).items(15)
+    ).items(15)))
 
 
 def reply(tweet_id, content, url):
