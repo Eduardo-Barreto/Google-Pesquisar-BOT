@@ -3,6 +3,7 @@ from html import unescape
 import pyshorteners
 import pyshorteners.exceptions
 from time import sleep
+import re
 
 
 def formatText(tweet):
@@ -15,10 +16,17 @@ def formatText(tweet):
 
     text = text.strip()
 
-    if 'http' in text:
-        text = text[:text.find('http')]
-
     text = text.replace('\n', ' ')
+
+    text = re.sub(
+        r'''(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)''' +
+        r'''(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s(''' +
+        r''')<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))''',
+        '',
+        text
+    )
+
+    text = text.replace('  ', ' ')
 
     mentions = tweet.entities.get('user_mentions')
     if mentions != []:
