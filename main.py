@@ -15,11 +15,11 @@ def clear():
 
 
 clear()
-print('Estou online')
+sleep(5)
 
 last_id = ''
 
-sleep(5)
+print('Estou online')
 tweets = twitter.getFirstTweet()
 for tweet in tweets:
     if tweet.author.screen_name not in contas:
@@ -47,7 +47,7 @@ for tweet in tweets:
                                     content,
                                     link
                                 )
-                                print('\nRespondido na reserva\n')
+                                print('Respondido na reserva\n')
 
                             except tweepy.TweepError:
                                 print('\nConta reserva suspensa')
