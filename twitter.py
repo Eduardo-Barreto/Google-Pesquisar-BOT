@@ -69,7 +69,7 @@ def getTweets(last_id):
 def reply(tweet, content, url):
     author = tweet.author.screen_name
     twiiter.update_with_media(
-        status=f'@{author} '+content+'\n\nlink para a sua pesquisa: '+url,
+        status=f'@{author} {content}\n\nlink para a sua pesquisa: {url}',
         filename='screenshot.jpg',
         in_reply_to_status_id=tweet.id,
     )
@@ -78,7 +78,7 @@ def reply(tweet, content, url):
 def reserva_reply(tweet, content, url):
     author = tweet.author.screen_name
     reserva.update_with_media(
-        status=f'@{author} '+content+'\n\nlink para a sua pesquisa: '+url,
+        status=f'@{author} {content}\n\nlink para a sua pesquisa: {url}',
         filename='screenshot.jpg',
         in_reply_to_status_id=tweet.id,
     )
@@ -87,7 +87,7 @@ def reserva_reply(tweet, content, url):
 def reserva2_reply(tweet, content, url):
     author = tweet.author.screen_name
     reserva2.update_with_media(
-        status=f'@{author} '+content+'\n\nlink para a sua pesquisa: '+url,
+        status=f'@{author} {content}\n\nlink para a sua pesquisa: {url}',
         filename='screenshot.jpg',
         in_reply_to_status_id=tweet.id,
     )
