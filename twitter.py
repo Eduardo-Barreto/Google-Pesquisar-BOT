@@ -66,30 +66,30 @@ def getTweets(last_id):
     ).items(15)))
 
 
-def reply(tweet_id, content, url):
+def reply(tweet, content, url):
+    author = tweet.author.screen_name
     twiiter.update_with_media(
-        status=content+'\n\nlink para a sua pesquisa: '+url,
+        status=f'@{author} '+content+'\n\nlink para a sua pesquisa: '+url,
         filename='screenshot.jpg',
-        in_reply_to_status_id=tweet_id,
-        auto_populate_reply_metadata=True
+        in_reply_to_status_id=tweet.id,
     )
 
 
-def reserva_reply(tweet_id, content, url):
+def reserva_reply(tweet, content, url):
+    author = tweet.author.screen_name
     reserva.update_with_media(
-        status=content+'\n\nlink para a sua pesquisa: '+url,
+        status=f'@{author} '+content+'\n\nlink para a sua pesquisa: '+url,
         filename='screenshot.jpg',
-        in_reply_to_status_id=tweet_id,
-        auto_populate_reply_metadata=True
+        in_reply_to_status_id=tweet.id,
     )
 
 
-def reserva2_reply(tweet_id, content, url):
+def reserva2_reply(tweet, content, url):
+    author = tweet.author.screen_name
     reserva2.update_with_media(
-        status=content+'\n\nlink para a sua pesquisa: '+url,
+        status=f'@{author} '+content+'\n\nlink para a sua pesquisa: '+url,
         filename='screenshot.jpg',
-        in_reply_to_status_id=tweet_id,
-        auto_populate_reply_metadata=True
+        in_reply_to_status_id=tweet.id,
     )
 
 

@@ -36,14 +36,14 @@ for tweet in tweets:
                         screenshot.get(link)
 
                         try:
-                            twitter.reply(tweet.id, content, link)
+                            twitter.reply(tweet, content, link)
                             print('\nRespondido com sucesso\n')
 
                         except tweepy.TweepError:
                             print('\nConta principal suspensa')
                             try:
                                 twitter.reserva_reply(
-                                    tweet.id,
+                                    tweet,
                                     content,
                                     link
                                 )
@@ -53,7 +53,7 @@ for tweet in tweets:
                                 print('\nConta reserva suspensa')
                                 try:
                                     twitter.reserva2_reply(
-                                        tweet.id,
+                                        tweet,
                                         content,
                                         link
                                     )
@@ -93,14 +93,14 @@ while True:
                             screenshot.get(link)
 
                             try:
-                                twitter.reply(tweet.id, content, link)
+                                twitter.reply(tweet, content, link)
                                 print('\nRespondido com sucesso\n')
 
                             except tweepy.TweepError:
                                 print('\nConta principal suspensa')
                                 try:
                                     twitter.reserva_reply(
-                                        tweet.id,
+                                        tweet,
                                         content,
                                         link
                                     )
@@ -110,7 +110,7 @@ while True:
                                     print('Conta reserva suspensa')
                                     try:
                                         twitter.reserva2_reply(
-                                            tweet.id,
+                                            tweet,
                                             content,
                                             link
                                         )
