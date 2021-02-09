@@ -1,6 +1,4 @@
 import tweepy
-from datetime import datetime
-
 import authkeys
 
 # Conta Principal
@@ -12,7 +10,7 @@ auth.set_access_token(
     authkeys.key3,
     authkeys.key4
 )
-twiiter = tweepy.API(
+twitter = tweepy.API(
     auth,
     wait_on_rate_limit=True,
     wait_on_rate_limit_notify=True
@@ -49,26 +47,17 @@ reserva2 = tweepy.API(
 )
 
 
-def getFirstTweet():
-    agora = datetime.now().strftime('%Y-%m-%d')
-    return tweepy.Cursor(
-        twiiter.search,
-        q='google pesquisar',
-        since=agora
-    ).items(1)
+def get_first_tweet():
+    return list(twitter.mentions_timeline())[0]
 
 
-def getTweets(last_id):
-    return reversed(list(tweepy.Cursor(
-        twiiter.search,
-        q='google pesquisar',
-        since_id=last_id
-    ).items(15)))
+def get_tweets(last_id):
+    return reversed(list(twitter.mentions_timeline()))
 
 
 def reply(tweet, content, url):
     author = tweet.author.screen_name
-    twiiter.update_with_media(
+    twitter.update_with_media(
         status=f'@{author} {content}\n\nlink para a sua pesquisa: {url}',
         filename='screenshot.jpg',
         in_reply_to_status_id=tweet.id,
