@@ -6,7 +6,7 @@ from time import sleep
 import re
 
 
-def formatText(tweet):
+def format(tweet):
     text = normalize('NFKD', tweet.text)
     text = text.encode('ASCII', 'ignore')
     text = text.decode('ASCII')
@@ -54,7 +54,7 @@ def replaces(text):
     return text
 
 
-def getLink(search):
+def get_link(search):
     erros = (
         pyshorteners.exceptions.BadAPIResponseException,
         pyshorteners.exceptions.BadURLException,
