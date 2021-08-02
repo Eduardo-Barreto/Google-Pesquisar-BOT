@@ -1,8 +1,8 @@
 __pycache__
 .vscode
-authkeys.py
 last_tweets.txt
 screenshot.jpg
 
 # venv
 google_pesquisar/
+env/

@@ -52,7 +52,10 @@ def get_first_tweet():
 
 
 def get_tweets(last_id):
-    return reversed(list(twitter.mentions_timeline()))
+    return reversed(
+        list(twitter.mentions_timeline()) +
+        list(reserva.mentions_timeline())
+    )
 
 
 def reply(tweet, content, url):

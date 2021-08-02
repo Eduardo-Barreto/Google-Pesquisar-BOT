@@ -71,7 +71,7 @@ if first_tweet.in_reply_to_status_id is None:
 
 
 while True:
-    sleep(4)
+    sleep(10)
     tweets = twitter.get_tweets(last_id)
     for tweet in tweets:
         if tweet.in_reply_to_status_id is None:

@@ -4,7 +4,8 @@ from time import sleep
 
 
 windows_path = 'C:/Program Files/wkhtmltopdf/bin/wkhtmltoimage.exe'
-raspi_path = '/usr/bin/wkhtmltoimage'
+# linux_path = '/usr/local/bin/wkhtmltoimage'
+heroku_path = '/app/bin/wkhtmltoimage'
 
 
 def get(url):
@@ -17,7 +18,7 @@ def get(url):
                 )
             else:
                 config = imgkit.config(
-                    wkhtmltoimage=raspi_path
+                    wkhtmltoimage=heroku_path
                 )
 
             options = {
@@ -39,6 +40,7 @@ def get(url):
 
             sucesso = True
 
-        except OSError:
+        except OSError as e:
+            print(e)
             sleep(2)
             continue
